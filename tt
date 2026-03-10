@@ -1,6 +1,7 @@
 import random
 
 def roll():
+<<<<<<< HEAD
     """Return a random dice roll between 1 and 6."""
     return random.randint(1, 6)
 
@@ -50,3 +51,42 @@ def main():
 
 if __name__ == "__main__":
     main()
+=======
+    min_value = 1
+    max_value = 6
+    return random.randint(min_value, max_value)
+
+while True:
+    players = input("Enter the number of players (2-4): ")
+    if players.isdigit():
+        players = int(players)
+        if 1 < players <= 4:
+            break
+        else:
+            print("Invalid input. Please enter a number between 2 and 4.")  
+    else:
+        print("Invalid input. Please enter a valid number.")
+
+max_score = 15
+players_scores = [0 for i in range(players)]
+current_score = 0
+while max(players_scores) < max_score:
+    for player in range(players):
+        print((f'Player {player + 1}s turn. your score:{current_score}'))
+        current_score = 0
+        while True:
+            should_roll = input("Do you want to roll the dice? (yes/no): ").lower()
+            if should_roll == 'yes' or should_roll == 'y':
+                value = roll()
+                if value == 1:
+                    print("You rolled a 1! Your score resets to 0.")
+                    current_score = 0
+                else:
+                    current_score += value
+                    print(f"You rolled a {value}. Your current score is {current_score}.")
+            else:
+                break
+        players_scores[player] += current_score
+        print('your current score is', players_scores[player])
+print(f"Player {player + 1} wins with a score of {players_scores[player]}!")
+>>>>>>> c3b91533235429341b4839d1dbb247a6f82970e0
