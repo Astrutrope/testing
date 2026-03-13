@@ -1,92 +1,66 @@
 import random
-
 def roll():
-<<<<<<< HEAD
-    """Return a random dice roll between 1 and 6."""
-    return random.randint(1, 6)
-
-def get_int(prompt: str, min_val: int, max_val: int) -> int:
-    """Prompt the user for an integer within a range, retrying until valid."""
-    while True:
-        try:
-            val = int(input(prompt))
-        except ValueError:
-            print("Invalid input. Enter an integer.")
-            continue
-        if val < min_val or val > max_val:
-            print(f"Please enter a number between {min_val} and {max_val}.")
-            continue
-        return val
-
-def main():
-    players = get_int("Enter the number of players (2-4): ", 2, 4)
-    max_score = get_int("Enter the maximum score to win: ", 1, 10000)
-
-    scores = [0] * players
-    current_player = 0
-
-    while True:
-        print(f"\nPlayer {current_player + 1}'s turn. Current score: {scores[current_player]}")
-        turn_score = 0
-        while True:
-            should_roll = input("Do you want to roll the dice? (yes/no): ").strip().lower()
-            if should_roll not in ("yes", "y"):
-                print("Turn ended.")
-                break
-
-            value = roll()
-            if value == 1:
-                print("You rolled a 1! Turn score resets to 0.")
-                turn_score = 0
-                break
-            else:
-                turn_score += value
-                print(f"You rolled a {value}. Turn total: {turn_score}.")
-                if scores[current_player] + turn_score >= max_score:
-                    scores[current_player] += turn_score
-                    print(f"Player {current_player + 1} wins with a score of {scores[current_player]}!")
-                    return
-        scores[current_player] += turn_score
-        current_player = (current_player + 1) % players
-
-if __name__ == "__main__":
-    main()
-=======
     min_value = 1
     max_value = 6
     return random.randint(min_value, max_value)
+    return roll()
 
-while True:
-    players = input("Enter the number of players (2-4): ")
-    if players.isdigit():
-        players = int(players)
-        if 1 < players <= 4:
-            break
-        else:
-            print("Invalid input. Please enter a number between 2 and 4.")  
-    else:
-        print("Invalid input. Please enter a valid number.")
+players = int(input("Enter the number of players (2-4): "))
 
-max_score = 15
+while players not in range(2, 4):
+        
+    print("Invalid input. Please enter a number between 2 and 4.")
+
+    players = int(input("Enter the number of players (2-4): "))
+
+    if players in range(2, 4):
+        
+        break
+
+
+
 players_scores = [0 for i in range(players)]
+
 current_score = 0
-while max(players_scores) < max_score:
-    for player in range(players):
-        print((f'Player {player + 1}s turn. your score:{current_score}'))
-        current_score = 0
-        while True:
-            should_roll = input("Do you want to roll the dice? (yes/no): ").lower()
-            if should_roll == 'yes' or should_roll == 'y':
+
+for players in range(players):
+
+    max_score = int(input("Enter the maximum score to win: "))
+
+    print((f'Player {players+ 1}s turn. your score:{current_score}'))
+
+    max(players_scores)>= max_score
+
+    while True:
+
+        should_roll=input("Do you want to roll the dice? (yes/no): ").lower()
+
+        if should_roll not in ('yes', 'y'):
+
+            print("turn ended")
+
+            break
+
+        elif should_roll in ('yes', 'y'):
+
                 value = roll()
-                if value == 1:
+
+                if value == 1: 
+
                     print("You rolled a 1! Your score resets to 0.")
+
                     current_score = 0
-                else:
+
+                elif value == roll():
+
                     current_score += value
+
                     print(f"You rolled a {value}. Your current score is {current_score}.")
-            else:
-                break
-        players_scores[player] += current_score
-        print('your current score is', players_scores[player])
-print(f"Player {player + 1} wins with a score of {players_scores[player]}!")
->>>>>>> c3b91533235429341b4839d1dbb247a6f82970e0
+
+                    players_scores[players] += current_score
+
+                else:
+
+                    print(f"Player {players + 1} wins with a score of {players_scores[players]}!")
+ 
+                    break
